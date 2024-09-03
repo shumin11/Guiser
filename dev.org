@@ -1,0 +1,240 @@
+* Accounts
+** Admin
++ guiserteam@gmail.com
+** Testers
++ guiser.user.az@gmail.com
+  + threads
+** Platforms
++ Goog: guiserteam@gmail.com on [[console.cloud.google.com/apis/dashboard]]
++ Meta: guiserteam@gmail.com on [[developers.facebook.com/apps]]  
+* Steps to set up for local dev
++ create .env file in root directory
++ in /etc/hosts, add line:
+  127.0.0.1 guiser.server
++ install mkcert (brew install mkcert)
++ in terminal:
+  > mkcert install
+  > cd [backend project root dir]
+  > mkcert guiser.server
+  > npm install
+  > npm run build
+  > npm run start
+  > cd [frontend project root dir]
+  > npm install
+  > npm run dev  
+* Meeting Minutes
+** Post-PR2
+*** Changes to existing pages/functionality
++ [ ] Hamburger/Drawer
+  + Should auto-collapse when click outside of it
+  + Page content should shift over when drawer expands
++ [X] Landing/Sign-on
+  + Change "Get Started" to "Sign in with Google"
+  + remove sign-on page
+  + have Google-only master authentication
++ [ ] Personas/Connect
+  + Need better way to display personas and connect them with accounts
+    + Combine them; likely collapse "Connect" page into the "Personas" page
+  + Note on associativity of personas and accounts
+    + User has 0+ personas
+    + Persona associated with 0-4 platform accounts; at most one per platform
+    + Platform accounts associated with exactly 1 persona
++ [ ] Generate
+  + Scrollable horizontal list with "tiles" for each persona at top
+  + Clicking tile highlights/outlines selected persona tile
+  + "Generate Post" workflow / form appears under the top scroller list
+  + Instead of "Accept", shows "Post to..." button(s), "Save to Drafts" button, and "Reject"/garbage can icon
++ [ ] Posts -> Rename to "Content"
+  + Add table column which displays icons of platforms to which item (row) has been posted
+*** TODO for P3
++ [X] Setup redux for state management
++ [X] Store user credentials from Google auth on login, remove on logout
++ [ ] Store default personas and posts, update on change
+** Mid-PR3
++ Meeting 17:00 Saturday to plan sprint
++ Demo Day:
+  * React/Redux for content generation  
+  * Google Auth / server integration
++ Discussion
+  * Back end authentication
+  * Team dynamics
+    - quick message when you start working on assigned functionality
+    - push/pull to/from project branch regularly to stay "live"
+    - 2nd Thursday block: group tests project branch for Saturday prep
+    - keep project branch stable on Friday pre-demo except for necessary functionality
+** Post-PR3
+*** PR4 requirements
++ Brant: Figure out DB hosting \to Atlas hosting w/ guiserteam@gmail.com account
++ Brant: Database model (many collections vs. few)
+   + Hybrid: nesting down users->personas->post-ID | posts float free, assoc. by ID
++ Brant: Node/Express connection to MongoDB instance
++ All: Read/write endpoints connected to Redux
+   + Ewan: auth
+   + Brant: posts/content
+   + Kiara: personas
++ Updates: change persona, change post content, etc.
++ Deletes: personas
+*** Task Breakdown:
++ Ewan:
++ Shumin 
+  * [X] Hamburger/Drawer
+    + Should auto-collapse when click outside of it
+    + Page content should shift over when drawer expands 
+      (change the way to click the drawer, it will automatically close)
+  * [X] Personas/Connect
+    + Eliminate connect page
+    + On personas page, clicking persona tile pops open modal dialog
+    + Modal dialog has pre-populated form with persona name, character text, update button
+    + Modal dialog has links/icons to connect to platform accounts    
+  * [ ] hook up to Twitter for hard-coded posts
++ Brant:
+  * [X] DB Setup
+    + setup Atlas hosting w/ guiserteam@gmail.com account
+    + basic DB model
+    + Node/Express connection for DB
+  * [X] Generate
+    + Scrollable horizontal list with "tiles" for each persona at top
+    + Clicking tile highlights/outlines selected persona tile
+    + "Generate Post" workflow / form appears under the top scroller list (incrementally)
+    + Instead of "Accept", shows "Post to..." button(s), "Save to Drafts" button, and "Reject"/garbage can icon
+  * [X] posts/content -> express endpoint connected w/ DB  
++ Kiara:
+  * [X] Personas -> express endpoint connected w/ DB
+** Post-PR4
+*** Task Breadown:
++ Ewan
+  * [X] Auth -> express endpoint connected w/ DB
+    + Hookup to DB for connection w/ Google
+  * [-] Figure out session validation w/ DB id after Kiara done
+  * [-] user registration on first sign-in
+  * [X] front-end threads integration
++ Kiara
+  * [X] Restructure redux store
+  * [X] 3 sentence "pitch" of project
+  * [ ] carousel for personas page (from generate)
+  * [X] show linked social media accounts on personas page
++ Shumin
+  * [X] Twitter authorization flow
+  * [X] Twitter link/post UI integration
++ Brant
+  1. [X] Git Actions
+  2. [X] Workflow Status badge     
+  3. [X] LinkedIn authorization flow
+  4. [ ] Revisit rubric
+  5. [ ] Content editing at review stage
+** Post-PR5
+*** Feature code cutoff: 2024-08-02 @ 22:00 => merge to main
+*** Demo planning: 2024-08-03 @ 19:00
+*** Final code cutoff: 2024-08-05 @ 10:00
+*** Demo rehearsal: 2024-08-06 @ 17:00
+*** TODOs - by feature code cutoff
++ Ewan
+  + [X] code cleanup
+  + [X] fix Threads on deployment
+  + [X] Home/Dashboard/About paragraph
+  + [X] Delete Settings link / route / page
+  + [X] Get rid of all session management cruft
+  + [X] Update linkPlatform in AuthController to use only the pid (no need for UID)    
++ Kiara
+   + code cleanup  
+  + UI theming (skins, icons)
+  + Button styling (everywhere)
+  + Uniform (shared) persona selection carousel component for personas and generate page
++ Brant
+  + code cleanup  
+  + add app/content length limits to DB
+  + logic for card deck in ContentCards.jsx (disable post link for over-length content)
+  + fix redirect at end of LinkedIn auth flow (to personas, through resolver)
+  + Redux cleanup
+  + Trigger reload of Redux store from DB on every page
++ Shumin
+  + code cleanup  
+  + check Twitter linking when not logged in to Google (bounces to Twitter site)
+  + update readme to meet rubric:
+    https://www.students.cs.ubc.ca/~cs-455/2024_S/about/rubrics.html#final-project-submission
+    + add "next steps" to readme re: rubric #5
+*** TODOs - by final code cutoff
++ All:
+  + bugfixes
+  + write one "demo ready" persona
+*** "Extras"
++ Edit/Delete content on content page
+*** UI
++ theming
+  + Dark mode default
+  + Examples
+    + https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffree-psd%2Fgrey-ui-kit_29-20000191.jpg&f=1&nofb=1&ipt=38787634c9e5c857e7092d4263ec4bca2334430f0a28a9050af25ab45dd18cb2&ipo=images
+    + https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F000%2F185%2F201%2Foriginal%2Fvector-dark-black-login-form-design-with-creative-ui.jpg&f=1&nofb=1&ipt=f25b41e0047083958c5269dc8c31e402cb79e1d145048ea83c5cb85560a71431&ipo=images
+    + https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmiro.medium.com%2Fmax%2F1400%2F1*gEVJ1-hOkpt2dzIbVXDNuQ.jpeg&f=1&nofb=1&ipt=feb8cfd71701c855de7249e0d2c6f4b80f6c466473ae1da479c53e4226f61776&ipo=images
+    + https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F54%2F8b%2Fbb%2F548bbb0f9f39efec8231986fd846ff8f.jpg&f=1&nofb=1&ipt=8d0ea9ed2ec242f68ddf581889695bed079dbe47275004622e0044fa6cd74885&ipo=images
+** Demo Planning
++ TODOs
+  + [ ] clear out content and authtokens
+  + [ ] go through app taking screenshots of every step of flow
+  + [ ] Kiara: persona name & persona description & prompt, for demo
+  + [ ] Shumin: persona & prompt for demo
+  + [X] Ewan: persona & prompt for demo
++ Demo Structure
+  + Brant drives screen; we talk over top
+  + Kiara
+    + (1 min) Intro & use cases: content creator; social media marketer
+    + (1 min) Create Persona -> Create Content -> Viewing Content
+  + Shumin
+    + (1 min) Twitter Flow -> social media marketer (MLM person to be created)
+  + Brant
+    + (1 min) LinkedIn Flow -> business influencer (Cire Rekatrap)
+  + Ewan
+    + (1 min) Threads Flow -> Ian about wrapping up CPSC 455
+    + (2 min) wrap-up 
+      + Ewan: what's cool
+        + number and kinds of integrations under uniform, clean and professional UI
+        + ideal use-case for LLM's trained on publicly available data (approximating dataset)
+      + main challenge: navigating different integration interfaces
+        + OAuth flows all differ slightly; have to dive deep into the docs (which aren't all great)
+        + Twitter->X accompanied by neglect of API that made Twitter so popular early on
+        + Recent Facebook API limitations forced us to remove FB in favor of Threads
+          + Lucked out: Threads API went live during this course
+      + next steps: stretch goals; see README on next steps
+** Last minute changes
++ Brant
+  + Content cards post button when no account linked to persona
+  + String length calculation
+  + Authtoken date validation for cards (see common.js; hide card if expired)
++ Shumin
+  + Done!
++ Kiara
+  + Done!
++ Ewan
+  + Done!
+* Demo Inputs
+** Persona/Content (Brant)
++ persona name: Rae Jefferst
++ persona description: You are Rae Jefferst, a high-profile beauty influencer and entrepreneur known for your bold, ever-changing hair colors and flawless makeup artistry. Your larger-than-life personality and unapologetic attitude have earned you a massive following on social media platforms like Instagram, Twitter, and YouTube, where you showcase your luxurious lifestyle, including high-end fashion, luxury cars, and exclusive properties. As the founder of Rae Jefferst Cosmetics, you are celebrated for innovative makeup products, from Velour Liquid Lipsticks to Jawbreaker eyeshadow palettes. Despite numerous controversies and public feuds, your candidness and authenticity keep your fans loyal. Your career began in music and modeling, but you found your true calling in the beauty industry, becoming a dominant force while addressing controversies head-on.
++ prompt: Post an apology about your most recent controversy where you licked a donut and yelled at a dog
+** Twitter (Shumin)
++ persona: Bella Skylar
++ prompt: promote upcoming wellness product line on Twitter
+** Threads (Ewan)
++ persona: Nai Melanc
++ prompt: Threads post about wrapping up CPSC 455
+** LinkedIn (Brant)
++ persona: Cire Rekatrap
++ prompt: LinkedIn post about facilitating a culture of out-of-the-box, goal-oriented, value-added, agile, disruptive synergy powered by the fourth industrial revolution of generative AI
+* Revised Demo
++ Shumin drives
++ Kiara
+  + (30s) Intro & use cases: content creator; social media marketer
++ Brant
+  + (1m) Create Persona -> Generate Content -> Review Content
++ Shumin
+  + (1m) 3 OAuth connection flows {Cire: LinkedIn, Nai: Threads, Bella: Twitter}
+  + (1m) 3 OAuth post flows {Cire: LinkedIn, Nai: Threads, Bella: Twitter}
++ (1m) Kiara 
+  + Responsiveness on Generate Page (IPhone SE)
+  + number and kinds of integrations under uniform, clean and professional UI
+  + ideal use-case for LLM's trained on publicly available data (approximating dataset)    
++ Ewan
+  + (1m) Challenges & Next Steps
+* Practices
+** 08/06 21:30 - 22:00
+** 08/07 17:00 - 17:30
