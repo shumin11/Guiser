@@ -60,19 +60,6 @@ In conclusion, Guiser not only meets but exceeds course requirements by incorpor
 ## Next Steps
 To further improve Guiser, we could enable image content generation and distribution, and add photo attachment capabilities as listed in our stretch goals. We could also develop a content scheduling system to allow automatic publishing at optimal times. Additionally, incorporating advanced analytics would help optimize post timing and engagement, making Guiser more powerful and user-friendly for content creators and social media managers.
 
-## List of Contributions (2-3 sentences)
-- Shumin Wang:
-Throughout the project, I developed a visually appealing and functional landing page, implemented Twitter user authentication, and integrated essential features such as Twitter posting. Additionally, I contributed to the development of the Personas front page and addressed critical challenges, including seamless page connectivity, responsive design, and OAuth integration. These efforts ensured a smooth and user-friendly experience, significantly enhancing the app's functionality, usability, and overall user engagement.
-
-- Brant Shapka:
-I implemented significant parts of the frontend (the Generate and Content pages), created and initialized the backend server, created and designed the MongoDB instance, wrote Mongoose models for the db, and wrote a significant chunk of the backend code responsible for CRUD functionality related to these db models/collections. In addition to this, I implemented LinkedIn user authentication/OAuth integration along with LinkedIn posting, thereby adding support for one of the three supported social media platforms. Lastly, I managed the deployment/hosting of the app and spent extra time testing the app.
-
-- Ewan Townshend:
-I implemented Google authentication, Threads OAuth integration and Threads posting, and infrastructure for session management, all spanning front and back end. I also pitched and refined the app idea, made various UI and server-side changes, implemented the (current) LLM integration, and set up / linked admin and tester accounts for platform integrations.
-
-- Kiara Melocoton:
-I implemented the Persona page with CRUD functionality and redux store. I designed and developed a major user interface overhaul for the entire application by creating themes in Material UI to convert our separate div/css based pages into a streamlined component based structure to have consistent design for every page. I added many tweaks to help user experience such as: converting the datetime object into a readable format, creating verification for expired tokens, adding tooltips to display full text properly, modifying helper text and buttons to have clear readability using icons, sizing and colors.
-
 # Demo accounts
 
 | Username                     | Email                     | Password       | Type       |
@@ -97,16 +84,4 @@ This is the end of the Final Project Report.
 3. `npm run build` to compile Typescript
 4. `npm run start` to start the server
 
-## Prototype Sketches
 
-### Landing Page
-
-<img src ="images/landing-page.jpg" width="1000px">
-
-### Login Page
-
-<img src ="images/login-page.jpg" width="1000px">
-
-### Persona Management Page
-
-<img src ="images/persona-page.jpg" width="1000px">
