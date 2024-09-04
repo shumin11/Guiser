@@ -49,8 +49,6 @@ Guiser stands out as a powerful, AI-driven tool for automating and enhancing soc
 | guiserteam@gmail.com         | guiserteam@gmail.com      | projectadmin   | LinkedIn   |
 | bella_guiser                 | guiserteam@outlook.com    | projectadmin   | Twitter    |
 
-This is the end of the Final Project Report.
-
 ---
 
 ## How To Run Frontend
